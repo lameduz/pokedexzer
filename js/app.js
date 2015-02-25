@@ -1,9 +1,9 @@
 var app = angular.module('pokedex',['ngResource']);
-var pokelist = {};
+var pokelist = [{}];
 
 app.controller('PokedexController',['$scope','$http', function($scope,$http)
 {
-	$scope.pokemon = [];
+	$scope.pokedex = []
 
 	$http({
 		method: 'GET',
@@ -14,12 +14,13 @@ app.controller('PokedexController',['$scope','$http', function($scope,$http)
 		//$scope.pokemon = data.pokemon;
 		angular.forEach(data.pokemon,function(pokemon,key)
 		{
-			$scope.pokemon = $resource(pokemon.resource_uri);
+			$scope.pokedex.push({info:pokemon});
 		});
-
+	console.log($scope.pokedex);
 
 	})
 	.error(function (data, status, headers, config) {
 		console.log('ya un blem');
 	});
+
 }]);
