@@ -1,0 +1,37 @@
+<div ng-controller="PokedexController">
+	<div class="row">
+		<div class="container">
+			<input type="text" ng-model="searchText">
+			<div class="col-md-3">
+				<div id="searchTextResults">
+					<ul ng-repeat="pokemon in pokedex | filter:searchText | orderBy:'pkdx_id'">
+						<li><a href="#pokedex" ng-Click="showInfos = ! showInfos; getEventId($event)" data="{{pokemon}}">{{pokemon.name}}</a></li>
+
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="media">
+						<h4 class="media-heading">{{pokefiche.name}}</h4>
+					<a class="pull-left" href="#">
+						<img class="media-object" src="http://pokeapi.co{{pokesprite}}" alt="Media Object">
+					</a>
+					<div class="media-body">
+						<h2>Pokedex ID : {{pokefiche.pkdx_id}}</h2>
+						<ul>Types:
+							<li ng-repeat="type in pokefiche.types">{{type.name}}</li>
+						</ul>
+						<ul>Stats:
+							<li>Health:{{pokefiche.hp}}</li>
+							<li>Defense:{{pokefiche.defense}}</li>
+							<li>Speed:{{pokefiche.speed}}</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
